@@ -3,9 +3,11 @@
 #include "str.h"
 #include "errors.h"
 
-/* Initializes the string.
- * Returns E_INTERNAL in case we fail to malloc() memory for the string,
- * and E_SUCCESS on success.
+/**
+ * @brief Initialize string s.
+ * @param s address of string to be initialised
+ * @return Returns E_INTERNAL in case we fail to malloc() memory for the string,
+ * @return and E_SUCCESS on success.
  */
 int strInit(string *s)
 {
@@ -25,15 +27,21 @@ int strInit(string *s)
     return E_SUCCESS;
 }
 
-/* Free the memory */
+/**
+ * @brief Frees memory occupied by string s.
+ * @param s address of string to be freed
+ */
 void strFree(string *s)
 {
     free(s->str);
 }
 
-/* Copy string from to string to.
- * Returns E_INTERNAL if infufficient memory (unable to realloc()),
- * E_SUCCESS otherwise.
+/**
+ * @brief Copy string from to string to.
+ * @param from string to copy from
+ * @param to string to copy to
+ * @return Returns E_INTERNAL on memory allocation error,
+ * @return E_SUCCESS otherwise.
  */
 int strCopy(string *from, string *to)
 {
@@ -56,14 +64,27 @@ int strCopy(string *from, string *to)
     return E_SUCCESS;
 }
 
-/* Copmares s1 and s2. Works the same as strcmp().
- * Thats maybe because it actually is strcmp().
+/**
+ * @brief Compare the strings s1 and s2.
+ * @brief strcmp() wrapper
+ * @param s1 string to compare
+ * @param s2 string to compare
+ * @return Returns int value less than, equal to or greater than zero
+ * @return if s1 is fount to be, respectively, less than, match, greater than
+ * @return s2.
  */
 int strCompare(string s1, string s2)
 {
     return strcmp(s1.str, s2.str);
 }
 
+/**
+ * @brief Append character c to end of string to.
+ * @param to string to which the character will be appended
+ * @param c char to append
+ * @return Returns E_INTERNAL on memory allocation failure
+ * @return and E_SUCCESS otherwise.
+ */
 int strAppend(string *to, char c)
 {
     if (to->len+1 >= to->mem) {
@@ -82,6 +103,13 @@ int strAppend(string *to, char c)
     return E_SUCCESS;
 }
 
+/**
+ * @brief Transform a C string to a string.
+ * @param from C string to be transformed
+ * @param to string where the final data will be stored
+ * @return Returns E_INTERNAL on memory allocation failure,
+ * @return E_SUCCESS otherwise.
+ */
 int strCopyC(char *from, string *to)
 {
     to->len = 0;
@@ -92,6 +120,11 @@ int strCopyC(char *from, string *to)
     return E_SUCCESS;
 }
 
+/**
+ * @brief Get a C string from string from.
+ * @param from string to make C string from
+ * @return Returns C string equivalent to string from.
+ */
 char *strGetStr(string *from)
 {
     return from->str;

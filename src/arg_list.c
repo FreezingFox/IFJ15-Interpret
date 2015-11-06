@@ -3,13 +3,14 @@
 #include "errors.h"
 #include "arg_list.h"
 
-/* Initialize an argument list */
+/** Initialize an argument list */
 void aListInit(struct argumentList *list)
 {
     list->first = NULL;
 }
 
-/* Add a new entry to an argument list.
+/**
+ * Add a new entry to an argument list.
  * Sets errlfg to and returns E_INTERNAL on insufficient memory,
  * E_SUCCESS on success.
  */
@@ -42,7 +43,7 @@ int aListAdd(struct argumentList *list, int type, string name)
     return E_SUCCESS;
 }
 
-/* Free an argument list */
+/** Free an argument list */
 void aListFree(struct argumentList *list)
 {
     struct argument *currItem = list->first;

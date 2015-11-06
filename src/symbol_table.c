@@ -4,7 +4,7 @@
 #include "str.h"
 #include "errors.h"
 
-/* Initialize the table */
+/** Initialize the table */
 void sTableInit(SymbolTable *table)
 {
     table->first = NULL;
@@ -70,7 +70,8 @@ int sTableInsert(SymbolTable *table,
     return E_SUCCESS;
 }
 
-/* Tries to find the key in the table.
+/**
+ * Tries to find the key in the table.
  * When found, return the data structure, otherwise NULL.
  */
 tData_t *sTableFind(SymbolTable *table, string key)
@@ -96,7 +97,7 @@ tData_t *sTableFind(SymbolTable *table, string key)
     }
 }
 
-/* Functionm to help recursively free the tree */
+/** Function to help recursively free the tree */
 static void freeNode(struct tableNode *node)
 {
     if (node == NULL)
@@ -107,7 +108,7 @@ static void freeNode(struct tableNode *node)
     free(node);
 }
 
-/* Free the tree! */
+/** Free the tree! */
 void sTableFree(SymbolTable *table)
 {
     if (table == NULL)
