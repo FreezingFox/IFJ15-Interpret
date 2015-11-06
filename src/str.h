@@ -1,5 +1,5 @@
-#ifndef __STR_H_
-#define __STR_H_
+#ifndef STR_H
+#define STR_H
 
 /* Increment value by which is memory increased in each step */
 #define STR_INC 10
@@ -19,4 +19,4 @@ int strAppend(string *to, char c);
 int strCopyC(char *from, string *to);
 char *strGetStr(string *from);
 
-#endif /* __STR_H_ */
+#endif /* STR_H */
