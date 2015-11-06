@@ -35,7 +35,7 @@ typedef enum {
 	TOK_EQUAL,				 ///< 	==
 	TOK_NONEQUAL,			 ///< 	!=
 	TOK_PLUS,				 ///< 	+
-	TOK_MINUS,				 //!<	--
+	TOK_MINUS,				 ///<	--
 	TOK_MUL,				 ///< 	*
 	TOK_DIV,				 ///< 	/
 	TOK_SEMICOLON,			 ///< 	;
