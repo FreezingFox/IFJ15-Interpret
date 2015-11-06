@@ -82,6 +82,10 @@ int main(int argc, char **argv)
 			case TOK_DOUBLE:
 				printf("double: %g\n", tok.value.d);
 				break;
+			case TOK_BROKEN_TOKEN:
+				printf("something went terribly wrong\n");
+				printErrFlg();
+				break;
 			default:
 				printf("token: %d\n", tok.type);
 				break;
