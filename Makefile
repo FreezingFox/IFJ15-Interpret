@@ -39,6 +39,7 @@ $(BIN)/test: test.c $(OBJS)
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(LDLIBS) $^ -o $@
 
+
 clean:
 	rm -rf $(OBJ)
 	rm -rf $(BIN)

@@ -18,7 +18,9 @@ token_t getToken(FILE *f)
 {
 	enum states state = START;
 	token_t token;
-	//token.type = TOK_BROKEN_TOKEN;
+	token.type = TOK_BROKEN_TOKEN;
+	token.value.i = 0;
+
 	string buff;
 	if (strInit(&buff) != E_SUCCESS)
 		return token;

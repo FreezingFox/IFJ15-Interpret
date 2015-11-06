@@ -41,7 +41,7 @@ typedef enum {
 	TOK_MUL,				 /**< 	* 						*/
 	TOK_GRGR,				 /**< 	>> 						*/
 	TOK_LWLW,				 /**< 	<< 						*/
-	TOK_BROKEN_TOKEN
+	TOK_BROKEN_TOKEN		 /**<   uninitialized token     */
 } tokenType_t;
 
 
