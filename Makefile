@@ -6,37 +6,20 @@ SRC = src
 OBJ = obj
 BIN = bin
 
-OBJS_ = symbol_table.o arg_list.o str.o errors.o scanner.o
-OBJS = $(addprefix $(OBJ)/,$(notdir $(OBJS_)))
+vpath %.c $(SRC)/
+
+SRCS = $(wildcard $(SRC)/*.c)
+OBJS = $(SRCS:$(SRC)/%.c=$(OBJ)/%.o)
 BINARY = test
 LOGIN = xsrnam00
 
-vpath %.c $(SRC)
-vpath %.h $(SRC)
+all: $(BIN)/$(BINARY)
 
-all: $(BIN)/test
-
-$(OBJ)/symbol_table.o: symbol_table.c symbol_table.h arg_list.h str.h errors.h
+$(OBJ)/%.o: %.c
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $< -c -o $@
 
-$(OBJ)/arg_list.o: arg_list.c arg_list.h str.h errors.h
-	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $< -c -o $@
-
-$(OBJ)/str.o: str.c str.h errors.h
-	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $< -c -o $@
-
-$(OBJ)/errors.o: errors.c errors.h
-	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $< -c -o $@
-
-$(OBJ)/scanner.o: scanner.c scanner.h token.h str.h errors.h
-	@mkdir -p $(@D)
-	$(CC) $(CFLAGS) $< -c -o $@
-
-$(BIN)/test: test.c $(OBJS)
+$(BIN)/$(BINARY): $(OBJS)
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(LDLIBS) $^ -o $@
 
@@ -48,9 +31,9 @@ final:
 	@rm -rf tmp/
 
 clean:
-	rm -rf $(OBJ)
-	rm -rf $(BIN)
-	rm -f *.zip
+	@rm -rf $(OBJ)
+	@rm -rf $(BIN)
+	@rm -f *.zip
 
 zip:
-	@zip -r "IFJ15 Interpret.zip" * .gitignore -x "IFJ15 Interpret.zip" -x "obj*" -x "doc*" -x "bin*" -x "Doxyfile"
+	@zip -r "IFJ15 Interpret.zip" * .gitignore -x "*.zip" -x "obj*" -x "doc*" -x "bin*" -x "Doxyfile"
