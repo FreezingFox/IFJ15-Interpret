@@ -1,7 +1,6 @@
 *.zip
 Doxyfile
 
-bin/
-obj/
-doc/
-tmp/
+*/
+!src/
+!res/
