@@ -1,6 +1,7 @@
-IFJ15 Interpret.zip
+*.zip
 Doxyfile
 
 bin/
 obj/
 doc/
+tmp/

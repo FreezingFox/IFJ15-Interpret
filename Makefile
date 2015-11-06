@@ -9,6 +9,7 @@ BIN = bin
 OBJS_ = symbol_table.o arg_list.o str.o errors.o scanner.o
 OBJS = $(addprefix $(OBJ)/,$(notdir $(OBJS_)))
 BINARY = test
+LOGIN = xsrnam00
 
 vpath %.c $(SRC)
 vpath %.h $(SRC)
@@ -39,11 +40,17 @@ $(BIN)/test: test.c $(OBJS)
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(LDLIBS) $^ -o $@
 
+final:
+	@mkdir -p tmp/
+	@cp src/* tmp/
+	@cp Makefile.fin tmp/Makefile
+	@zip -j "$(LOGIN).zip" tmp/*
+	@rm -rf tmp/
 
 clean:
 	rm -rf $(OBJ)
 	rm -rf $(BIN)
-	rm -f "IFJ15 Interpret.zip"
+	rm -f *.zip
 
 zip:
 	@zip -r "IFJ15 Interpret.zip" * .gitignore -x "IFJ15 Interpret.zip" -x "obj*" -x "doc*" -x "bin*" -x "Doxyfile"
