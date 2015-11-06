@@ -1,5 +1,5 @@
-#ifndef __ERRORS_H_
-#define __ERRORS_H_
+#ifndef ERRORS_H
+#define ERRORS_H
 
 #include <stdio.h>
 /* Just some error codes */
@@ -24,4 +24,4 @@ inline void printErrFlg() { printf("%d\n", errflg); }
 inline int getErrFlg() { return errflg; }
 inline void setErrFlg(const int val) { errflg = val; }
 
-#endif /* __ERRORS_H_ */
+#endif /* ERRORS_H */

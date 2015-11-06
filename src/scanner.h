@@ -1,5 +1,5 @@
-#ifndef __SCANNER_H_
-#define __SCANNER_H_
+#ifndef SCANNER_H
+#define SCANNER_H
 
 #include "token.h"
 
@@ -17,4 +17,4 @@ enum states {
 
 token_t getToken(FILE *f);
 
-#endif /* __SCANNER_H_ */
+#endif /* SCANNER_H */
