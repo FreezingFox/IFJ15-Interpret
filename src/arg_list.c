@@ -18,7 +18,7 @@ int aListAdd(struct argumentList *list, int type, string name)
 {
     struct argument *newItem = malloc(sizeof(struct argument));
     if (newItem == NULL) {
-        errflg = E_INTERNAL;
+        setErrFlg(E_INTERNAL);
         return E_INTERNAL;
     }
 
@@ -31,7 +31,6 @@ int aListAdd(struct argumentList *list, int type, string name)
     if (rc) {
         strFree(&(newItem->name));
         free(newItem);
-        errflg = rc;
         return rc;
     }
     newItem->type = type;
@@ -39,7 +38,6 @@ int aListAdd(struct argumentList *list, int type, string name)
     newItem->next = list->first;
     list->first = newItem;
 
-    errflg = E_SUCCESS;
     return E_SUCCESS;
 }
 
