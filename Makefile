@@ -45,4 +45,4 @@ clean:
 	rm -f "IFJ15 Interpret.zip"
 
 zip:
-	zip "IFJ15 Interpret.zip" */*.c */*.h res/* Makefile -x "IFJ15 Interpret.zip"
+	@zip -r "IFJ15 Interpret.zip" * .gitignore -x "IFJ15 Interpret.zip" -x "obj*" -x "doc*" -x "bin*" -x "Doxyfile"
