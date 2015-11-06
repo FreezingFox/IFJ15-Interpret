@@ -127,7 +127,50 @@ token_t getToken(FILE *f)
 							token.type = TOK_MUL;
 							break;
 						case '/':
-							token.type = TOK_DIV;
+							c = fgetc(f);
+							if (c == '/') {
+								while ((c = fgetc(f)) != '\n')
+									if (c == EOF) {
+										setErrFlg(E_SCANNER);
+										strFree(&buff);
+										return token;
+									}
+								token.type = TOK_COMMENT;
+							} else if (c == '*') {
+								while (1) {
+									c = fgetc(f);
+									if (c == '*') {
+										c = fgetc(f);
+										if (c == '/') {
+											token.type = TOK_COMMENT;
+											break;
+										} else if (c == EOF) {
+											setErrFlg(E_SCANNER);
+											strFree(&buff);
+											return token;
+										} else {
+											if (ungetc(c, f) == EOF
+												|| ungetc('*', f) == EOF)
+											{
+												setErrFlg(E_INTERNAL);
+												strFree(&buff);
+												return token;
+											}
+										}
+									} else if (c == EOF) {
+										setErrFlg(E_SCANNER);
+										strFree(&buff);
+										return token;
+									}
+								}
+							} else {
+								if (ungetc(c, f) == EOF) {
+									setErrFlg(E_INTERNAL);
+									strFree(&buff);
+									return token;
+								}
+								token.type = TOK_DIV;
+							}
 							break;
 						case '!':
 							c = fgetc(f);
