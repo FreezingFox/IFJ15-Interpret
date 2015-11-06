@@ -1,0 +1,6 @@
+int main()
+{
+	return 0;
+	double cats = 0.15e-4;
+	cout << cats;
+}
