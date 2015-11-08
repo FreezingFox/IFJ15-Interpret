@@ -4,18 +4,20 @@
 #include "arg_list.h"
 #include "str.h"
 
+#define NOVAL       ((varVal_t){ .i = 0 })
+
 /* This holds value of the variables */
-union varValue {
+typedef union {
     int i;
     double d;
     string s;
-};
+} varVal_t;
 
 /* Data belonging to a key */
 typedef struct {
-    enum dataTypes type;
-    union varValue value;        // variable
-    struct argumentList *args;   // function
+    dataType_t type;
+    varVal_t value;        // variable
+    funcArgList_t *args;   // function
 } tData_t;
 
 /* Node of the tree */
@@ -29,15 +31,15 @@ struct tableNode {
 /* The symbol table */
 typedef struct {
     struct tableNode *first;
-} SymbolTable;
+} symbolTable_t;
 
 
-void sTableInit(SymbolTable *table);
-int sTableInsert(SymbolTable *table,
+void sTableInit(symbolTable_t *table);
+int sTableInsert(symbolTable_t *table,
                  string key, int type,
-                 union varValue value,
-                 struct argumentList *args);
-tData_t *sTableFind(SymbolTable *table, string key);
-void sTableFree(SymbolTable *table);
+                 varVal_t value,
+                 funcArgList_t *args);
+tData_t *sTableFind(symbolTable_t *table, string key);
+void sTableFree(symbolTable_t *table);
 
 #endif /* SYMBOL_TABLE_H */

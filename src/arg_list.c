@@ -4,7 +4,7 @@
 #include "arg_list.h"
 
 /** Initialize an argument list */
-void aListInit(struct argumentList *list)
+void aListInit(funcArgList_t *list)
 {
     list->first = NULL;
 }
@@ -14,7 +14,7 @@ void aListInit(struct argumentList *list)
  * Sets errlfg to and returns E_INTERNAL on insufficient memory,
  * E_SUCCESS on success.
  */
-int aListAdd(struct argumentList *list, int type, string name)
+int aListAdd(funcArgList_t *list, int type, string name)
 {
     struct argument *newItem = malloc(sizeof(struct argument));
     if (newItem == NULL) {
@@ -42,7 +42,7 @@ int aListAdd(struct argumentList *list, int type, string name)
 }
 
 /** Free an argument list */
-void aListFree(struct argumentList *list)
+void aListFree(funcArgList_t *list)
 {
     struct argument *currItem = list->first;
     struct argument *next;

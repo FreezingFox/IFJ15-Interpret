@@ -5,21 +5,21 @@
 #include "errors.h"
 
 /** Initialize the table */
-void sTableInit(SymbolTable *table)
+void sTableInit(symbolTable_t *table)
 {
     table->first = NULL;
 }
 
 /**
  * Insert a new entry to the table.
- * Returns E_SEMANTICS if the key is already defined,
- * E_INTERNAL when we can't create a new node due to infufficient memory,
- * E_SUCCESS on success.
+ * @return Returns E_SEMANTICS if the key is already defined,
+ * @return E_INTERNAL when we can't create a new node due to
+ * @return infufficient memory, E_SUCCESS on success.
  */
-int sTableInsert(SymbolTable *table,
+int sTableInsert(symbolTable_t *table,
                  string key, int type,
-                 union varValue value,
-                 struct argumentList *args)
+                 varVal_t value,
+                 funcArgList_t *args)
 {
     /* Is the key already defined? */
     if (sTableFind(table, key) != NULL)
@@ -74,7 +74,7 @@ int sTableInsert(SymbolTable *table,
  * Tries to find the key in the table.
  * When found, return the data structure, otherwise NULL.
  */
-tData_t *sTableFind(SymbolTable *table, string key)
+tData_t *sTableFind(symbolTable_t *table, string key)
 {
 
     if (table->first == NULL)
@@ -105,11 +105,13 @@ static void freeNode(struct tableNode *node)
     freeNode(node->left);
     freeNode(node->right);
     strFree(&(node->key));
+    if (node->data.args != NULL)
+        aListFree(&(node->data.args));
     free(node);
 }
 
 /** Free the tree! */
-void sTableFree(SymbolTable *table)
+void sTableFree(symbolTable_t *table)
 {
     if (table == NULL)
         return;

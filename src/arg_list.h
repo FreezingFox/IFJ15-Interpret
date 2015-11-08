@@ -4,22 +4,27 @@
 #include "str.h"
 
 /* Possible data types */
-enum dataTypes {
+typedef enum {
     T_INT,
     T_DOUBLE,
     T_STRING
-};
+} dataType_t;
 
 /* Item of the list to hold arguments of functions */
 struct argument {
-    enum dataTypes type;
+    dataType_t type;
     string name;
     struct argument *next;
 };
 
 /* List of the arguments to functions */
-struct argumentList {
+typedef struct {
     struct argument *first;
-};
+} funcArgList_t;
+
+
+void aListInit(funcArgList_t *list);
+int aListAdd(funcArgList_t *list, int type, string name);
+void aListFree(funcArgList_t *list);
 
 #endif /* ARG_LIST_H */

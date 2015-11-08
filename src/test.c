@@ -9,14 +9,14 @@
 
 int main(int argc, char **argv)
 {
-	SymbolTable table;
+	symbolTable_t table;
 	sTableInit(&table);
 	string key;
 	strInit(&key);
 	strCopyC("keyword", &key);
-	union varValue value;
+	varVal_t value;
 	value.i = 27;
-	sTableInsert(&table, key, T_INT, value, NULL);
+	sTableInsert(&table, key, T_INT, NOVAL, NULL);
 	strCopyC("yera", &key);
 	value.i = 27;
 	sTableInsert(&table, key, T_INT, value, NULL);
