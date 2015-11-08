@@ -73,7 +73,7 @@ int main(int argc, char **argv)
 				break;
 			case TOK_IDENTIFIER:
 			case TOK_STRING:
-				printf("%d: %s\n",tok.type, strGetStr(&(tok.value.s)));
+				printf("%d: %s\n",tok.type, strGetCStr(&(tok.value.s)));
 				strFree(&(tok.value.s));
 				break;
 			case TOK_INT:

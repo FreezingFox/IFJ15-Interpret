@@ -14,7 +14,7 @@ int strCopy(string *from, string *to);
 int strCompare(string s1, string s2);
 int strAppend(string *to, char c);
 int strCopyC(char *from, string *to);
-char *strGetStr(string *from);
+char *strGetCStr(string *from);
 
 /* Built-in functions */
 int length(string s);
