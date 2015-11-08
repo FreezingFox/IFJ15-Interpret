@@ -404,7 +404,7 @@ token_t getToken(FILE *f)
 		}
 	}
 
-	char *cBuff = strGetStr(&buff);
+	char *cBuff = strGetCStr(&buff);
 	switch(token.type) {
 		case TOK_INT:
 			token.value.i = atoi(cBuff);

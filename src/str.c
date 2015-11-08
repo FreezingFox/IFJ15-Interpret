@@ -128,7 +128,7 @@ int strCopyC(char *from, string *to)
  * @param from string to make C string from
  * @return Returns C string equivalent to string from.
  */
-char *strGetStr(string *from)
+char *strGetCStr(string *from)
 {
     return from->str;
 }
