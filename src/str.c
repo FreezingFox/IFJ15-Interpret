@@ -3,6 +3,9 @@
 #include "str.h"
 #include "errors.h"
 
+/* Increment value by which is memory increased in each step */
+#define STR_INC 10
+
 /**
  * @brief Initialize string s.
  * @param s address of string to be initialised
@@ -12,7 +15,7 @@
 int strInit(string *s)
 {
     /* Allocate starting memory */
-    s->str = malloc(STR_INC);
+    s->str = (char *)malloc(STR_INC);
     if (s->str == NULL) {
         setErrFlg(E_INTERNAL);
         return E_INTERNAL;
@@ -48,7 +51,7 @@ int strCopy(string *from, string *to)
     /* Check if there is enough space in *to to occupy the value of *from */
     if (from->len >= to->mem) {
         /* Call realloc() on insufficient memory in *to */
-        char *newStr = realloc(to->str, from->len+1);
+        char *newStr = (char *)realloc(to->str, from->len+1);
         if (newStr == NULL) {
             return E_INTERNAL;
             setErrFlg(E_INTERNAL);
@@ -88,7 +91,7 @@ int strCompare(string s1, string s2)
 int strAppend(string *to, char c)
 {
     if (to->len+1 >= to->mem) {
-        char *newStr = realloc(to->str, to->mem + STR_INC);
+        char *newStr = (char *)realloc(to->str, to->mem + STR_INC);
         if (newStr == NULL) {
             setErrFlg(E_INTERNAL);
             return E_INTERNAL;
@@ -128,4 +131,68 @@ int strCopyC(char *from, string *to)
 char *strGetStr(string *from)
 {
     return from->str;
+}
+
+/**
+ * @brief Return length of string s.
+ * @param s string to return length of
+ * @return Returns length of string s.
+ */
+int length(string s)
+{
+    return s.len;
+}
+
+/**
+ *
+ */
+string substr(string s, int i, int n)
+{
+    string temp;
+    if (strInit(&temp) != E_SUCCESS)
+        return temp;
+
+    for (int j = i; j < n; j++)
+        if (strAppend(&temp, s.str[j]) != E_SUCCESS)
+            return temp;
+
+    return temp;
+ }
+
+/**
+ *
+ */
+string concat(string s1, string s2)
+{
+    string temp;
+    if (strInit(&temp) != E_SUCCESS)
+        return temp;
+
+    if (strCopy(&s1, &temp) != E_SUCCESS)
+        return temp;
+
+    for (int i = 0, j = length(temp); i < length(s2); i++, j++)
+        if (strAppend(&temp, s2.str[j]) != E_SUCCESS)
+            return temp;
+
+    return temp;
+}
+
+/**
+ *
+ */
+int find(string s, string search)
+{
+    // TODO im lazy
+    return 0;
+}
+
+/**
+ *
+ */
+string sort(string s)
+{
+    string temp;
+    // TODO im lazy
+    return temp;
 }

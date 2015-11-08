@@ -1,12 +1,9 @@
 #ifndef STR_H
 #define STR_H
 
-/* Increment value by which is memory increased in each step */
-#define STR_INC 10
-
 typedef struct {
     char *str;     /* actual string */
-    int len;       /* lenght of the string */
+    int len;       /* length of the string */
     int mem;       /* memory occupied by the string */
 } string;
 
@@ -18,5 +15,12 @@ int strCompare(string s1, string s2);
 int strAppend(string *to, char c);
 int strCopyC(char *from, string *to);
 char *strGetStr(string *from);
+
+/* Built-in functions */
+int length(string s);
+string substr(string s, int i, int n);
+string concat(string s1, string s2);
+int find(string s, string search);
+string sort(string s);
 
 #endif /* STR_H */
