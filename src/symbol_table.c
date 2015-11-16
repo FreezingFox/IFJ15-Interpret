@@ -3,6 +3,7 @@
 #include "arg_list.h"
 #include "str.h"
 #include "errors.h"
+#include "token.h"
 
 /** Initialize the table */
 void sTableInit(symbolTable_t *table)

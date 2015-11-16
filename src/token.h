@@ -3,6 +3,13 @@
 
 #include "str.h"
 
+/* This holds value of the variables */
+typedef union {
+    int i;
+    double d;
+    string s;
+} varVal_t;
+
 /**
  * Enumeration of all possible tokens.
  */
@@ -51,11 +58,7 @@ typedef enum {
  */
 typedef struct {
 	tokenType_t type;	/**< Type of the token 				*/
-	union {
-		int i;			/**< Integer data					*/
-		double d;		/**< Floating point number data		*/
-		string s;		/**< String data					*/
-	} value;			/**< Data if applicable				*/
+	varVal_t value;		/**< Data if applicable				*/
 } token_t;
 
 #endif /* TOKEN_H */

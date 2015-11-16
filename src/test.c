@@ -3,6 +3,7 @@
 #include "str.h"
 #include "scanner.h"
 #include "errors.h"
+#include "token.h"
 
 #define OK(s) printf("TEST: %s: OK\n", (s))
 #define FAIL(s) printf("TEST: %s: FAIL\n", (s))

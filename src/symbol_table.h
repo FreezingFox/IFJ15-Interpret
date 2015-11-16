@@ -3,15 +3,9 @@
 
 #include "arg_list.h"
 #include "str.h"
+#include "token.h"
 
 #define NOVAL       ((varVal_t){ .i = 0 })
-
-/* This holds value of the variables */
-typedef union {
-    int i;
-    double d;
-    string s;
-} varVal_t;
 
 /* Data belonging to a key */
 typedef struct {
