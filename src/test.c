@@ -94,5 +94,7 @@ int main(int argc, char **argv)
 	}
 	fclose(f);
 	printErrFlg();
+
+	/* cats are cute */
 	return 0;
 }
